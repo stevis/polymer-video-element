@@ -68,6 +68,14 @@ A wrapper for the HTML video element.
         },
 
         /**
+         * Defaults to no controls
+         */
+         controls: {
+           type: Boolean,
+           value: false
+         },
+
+        /**
          * Exposes the current playback time, in seconds.
          *
          * You can divide this value by the `duration` to determine the playback percentage.
@@ -150,8 +158,8 @@ A wrapper for the HTML video element.
       },
 
       attached: function() {
-        console.log('Video Element Attached');
 
+        //video element
         this.video = this.$.videoPlayer;
 
         //state listeners
@@ -162,6 +170,15 @@ A wrapper for the HTML video element.
         //timing listeners
         this.listen(this.video, 'durationchange', '_onDurationChange');
         this.listen(this.video, 'timeupdate', '_onTimeUpdate');
+
+        //set defaults
+        this._setDefaultState();
+
+      },
+
+      _setDefaultState: function() {
+
+        this.video.controls = this.controls;
 
       },
 
