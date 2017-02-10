@@ -254,6 +254,7 @@ A wrapper for the HTML video element.
       },
 
       _onPaused: function(e) {
+        console.log('paused');
         this.state = 2;
       },
 
@@ -299,6 +300,7 @@ A wrapper for the HTML video element.
        * @method play
        */
       play: function() {
+        console.log('play');
         this.video.play();
       },
 
@@ -308,6 +310,7 @@ A wrapper for the HTML video element.
        * @method pause
        */
       pause: function() {
+        console.log('pause');
         this.video.pause();
       },
 

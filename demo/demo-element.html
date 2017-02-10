@@ -47,21 +47,6 @@
       >Pause</button>
     </div>
 
-    <!-- <div>
-      <label for="videoId">Video ID:</label>
-      <input id="videoId" value="M7lc1UVf-VE">
-      <button id="cue-video" on-click="handleCueVideo">Cue</button>
-    </div>
-
-    <div>
-      <p>Player Events:</p>
-      <ol>
-        <template is="dom-repeat" items="{{events}}">
-          <li>State change: <span>{{item.data}}</span></li>
-        </template>
-      </ol>
-    </div> -->
-
   </template>
 </dom-module>
 <script>
@@ -69,13 +54,19 @@
     is: 'demo-element',
     properties: {
       playSupported: Boolean,
-      state: Number,
+      state: {
+        type: Number,
+        observer: '_stateObserver'
+      },
       currentTime: Number,
       currentTimeFormatted: String,
       duration: Number,
       durationFormatted: String,
       fractionLoaded: Number,
-      volume: Number,
+      volume: {
+        type: Number,
+        observer: '_volumeObserver'
+      },
       playbackRate: Number,
       playbackQuality: String,
       events: {
@@ -104,8 +95,11 @@
     handlePauseVideo: function(ev) {
       this.$.polymerVideoElement.pause();
     },
-    handleCueVideo: function(ev) {
-      //this.$.googleYouTube.videoId = this.$.videoId.value;
+    _volumeObserver: function(volume) {
+      console.log('volume');
+    },
+    _stateObserver: function(state) {
+      console.log(state);
     }
   });
 
